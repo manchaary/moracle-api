@@ -8,6 +8,12 @@ const app = express();
 app.use(cors());
 
 const API_URL_TEMP = "https://football-forecast.herokuapp.com";
+app.get("/get_dates/", async function (req, res, next) {
+  const response = await fetch(`http://gatewaylambda.space:10500/get_dates/`, {
+    method: "GET",
+  }).then((res) => res.json());
+  res.json(response);
+});
 
 app.get("/get_teams/", async function (req, res, next) {
   const response = await fetch(
